@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>tiffany chase</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: "DM Sans", sans-serif;
+            background: #ffdce9;
+            color: #222;
+            display: flex;
+            justify-content: center;
+            padding: 45px 20px;
+            overflow-x: hidden;
+        }
+
+        /* =========================
+           DECORATIVE SPARKLES
+        ========================= */
+
+        .sparkle {
+            position: fixed;
+            color: #81d8d0;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .sparkle.one {
+            top: 12%;
+            left: 12%;
+        }
+
+        .sparkle.two {
+            top: 22%;
+            right: 13%;
+        }
+
+        .sparkle.three {
+            bottom: 15%;
+            left: 15%;
+        }
+
+        .sparkle.four {
+            bottom: 25%;
+            right: 12%;
+        }
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+            width: 100%;
+            max-width: 560px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* =========================
+           PROFILE PICTURE
+        ========================= */
+
+        .profile-picture {
+            width: 125px;
+            height: 125px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            margin: 0 auto 18px auto;
+
+            border: 5px solid white;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.10);
+        }
+
+        /* =========================
+           NAME
+        ========================= */
+
+        h1 {
+            font-family: "Playfair Display", serif;
+            font-size: 38px;
+            font-weight: 600;
+            letter-spacing: -1px;
+            margin-bottom: 5px;
+        }
+
+        /* =========================
+           USERNAME
+        ========================= */
+
+        .username {
+            color: #666;
+            font-size: 15px;
+            margin-bottom: 12px;
+        }
+
+        /* =========================
+           BIO
+        ========================= */
+
+        .bio {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 28px;
+        }
+
+        /* =========================
+           LINK BUTTONS
+        ========================= */
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .link {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            min-height: 62px;
+            padding: 17px 50px;
+
+            background: rgba(255, 255, 255, 0.92);
+            color: #222;
+
+            text-decoration: none;
+
+            border-radius: 18px;
+
+            font-size: 15px;
+            font-weight: 600;
+
+            border: 1px solid rgba(255, 255, 255, 0.8);
+
+            box-shadow:
+                0 8px 20px rgba(0, 0, 0, 0.07);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                background 0.25s ease;
+        }
+
+        .link:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 12px 25px rgba(0, 0, 0, 0.11);
+
+            background: #ffffff;
+        }
+
+        .link:active {
+            transform: scale(0.98);
+        }
+
+        .link span {
+            margin-right: 8px;
+        }
+
+        /* =========================
+           SOCIAL ICON BUTTONS
+        ========================= */
+
+        .socials {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            gap: 14px;
+
+            margin-top: 28px;
+        }
+
+        .social {
+            width: 55px;
+            height: 55px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: white;
+            color: #222;
+
+            border-radius: 50%;
+
+            text-decoration: none;
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.08);
+
+            transition: 0.25s ease;
+        }
+
+        .social svg {
+            width: 24px;
+            height: 24px;
+
+            fill: currentColor;
+        }
+
+        .social:hover {
+            background: #81d8d0;
+            color: white;
+
+            transform: translateY(-4px);
+
+            box-shadow:
+                0 8px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 30px;
+            font-size: 11px;
+            color: #777;
+        }
+
+        /* =========================
+           MOBILE DESIGN
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 35px 18px;
+            }
+
+            .container {
+                max-width: 430px;
+            }
+
+            .profile-picture {
+                width: 110px;
+                height: 110px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            .link {
+                min-height: 58px;
+            }
+
+            .sparkle {
+                opacity: 0.5;
+            }
+
+            .social {
+                width: 50px;
+                height: 50px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- Decorative sparkles -->
+
+    <div class="sparkle one">✦</div>
+    <div class="sparkle two">✧</div>
+    <div class="sparkle three">✦</div>
+    <div class="sparkle four">✧</div>
+
+
+    <!-- Main Website -->
+
+    <div class="container">
+
+
+        <!-- Profile Picture -->
+
+        <img
+            src="profile.jpg"
+            class="profile-picture"
+            alt="Tiffany Chase"
+        >
+
+
+        <!-- Name -->
+
+        <h1>tiffany</h1>
+
+
+        <!-- Username -->
+
+        <p class="username">
+            @tiffanychase
+        </p>
+
+
+        <!-- Bio -->
+
+        <p class="bio">
+            beauty · lifestyle · travel
+        </p>
+
+
+        <!-- LINKS -->
+
+        <div class="links">
+
+
+            <!-- Instagram -->
+
+            <a
+                class="link"
+                href="https://www.instagram.com/tiffy.chase/"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span>♡</span>
+                Instagram
+            </a>
+
+
+            <!-- TikTok -->
+
+            <a
+                class="link"
+                href="https://www.tiktok.com/@tiffyclipz"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span>♡</span>
+                TikTok
+            </a>
+
+
+            <!-- YouTube -->
+
+            <a
+                class="link"
+                href="https://www.youtube.com/@tiffychase"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span>♡</span>
+                YouTube
+            </a>
+
+
+            <!-- Twitch -->
+
+            <a
+                class="link"
+                href="https://www.twitch.tv/tiffanychase"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <span>♡</span>
+                Twitch
+            </a>
+
+
+            <!-- Favorite Things -->
+
+            <a
+                class="link"
+                href="#"
+            >
+                <span>✦</span>
+                My Favorite Things
+            </a>
+
+
+            <!-- Business Inquiries -->
+
+            <a
+    class="link"
+    href="https://mail.google.com/mail/?view=cm&fs=1&to=tiffylee1948@gmail.com"
+    target="_blank"
+    rel="noopener noreferrer"
+>
+    <span>♡</span>
+    Business Inquiries
+</a>
+
+
+        </div>
+
+
+        <!-- SOCIAL ICONS -->
+
+        <div class="socials">
+
+
+            <!-- Instagram -->
+
+            <a
+                class="social"
+                href="https://www.instagram.com/tiffy.chase/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.5 6a1 1 0 1 1-1 1 1 1 0 0 1 1-1z"/>
+
+                </svg>
+
+            </a>
+
+
+            <!-- TikTok -->
+
+            <a
+                class="social"
+                href="https://www.tiktok.com/@tiffyclipz"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="TikTok"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.22V2h-3.1v13.67a2.93 2.93 0 1 1-2-2.78V9.73a6.02 6.02 0 1 0 5.1 5.94V8.56a7.9 7.9 0 0 0 4.62 1.48V7a4.8 4.8 0 0 1-.85-.31z"/>
+
+                </svg>
+
+            </a>
+
+
+            <!-- YouTube -->
+
+            <a
+                class="social"
+                href="https://www.youtube.com/@tiffanychase"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="YouTube"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31.2 31.2 0 0 0 0 12a31.2 31.2 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31.2 31.2 0 0 0 24 12a31.2 31.2 0 0 0-.5-5.8zM9.6 15.5v-7l6.2 3.5-6.2 3.5z"/>
+
+                </svg>
+
+            </a>
+
+
+            <!-- Twitch -->
+
+            <a
+                class="social"
+                href="https://www.twitch.tv/tiffanychase"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Twitch"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                >
+
+                    <path d="M4 2h18v13l-5 5h-4l-3 3H7v-3H2V6l2-4zm1 2L4 7v11h5v3l3-3h4l4-4V4H5zm3 3h2v6H8V7zm6 0h2v6h-2V7z"/>
+
+                </svg>
+
+            </a>
+
+
+        </div>
+
+
+        <!-- Footer -->
+
+        <footer>
+            © 2026 tiffany chase
+        </footer>
+
+
+    </div>
+
+</body>
+
+</html>
