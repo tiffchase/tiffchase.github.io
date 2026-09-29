@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>my favorites · tiffany</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =========================
+           GENERAL
+        ========================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family: "DM Sans", sans-serif;
+
+            background: #ffdce9;
+
+            color: #222;
+
+            display: flex;
+
+            justify-content: center;
+
+            padding: 45px 20px;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================
+           DECORATIVE SPARKLES
+        ========================= */
+
+        .sparkle {
+            position: fixed;
+
+            color: #81d8d0;
+
+            font-size: 20px;
+
+            pointer-events: none;
+
+            z-index: 0;
+        }
+
+        .sparkle.one {
+            top: 12%;
+            left: 12%;
+        }
+
+        .sparkle.two {
+            top: 22%;
+            right: 13%;
+        }
+
+        .sparkle.three {
+            bottom: 15%;
+            left: 15%;
+        }
+
+        .sparkle.four {
+            bottom: 25%;
+            right: 12%;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+            width: 100%;
+
+            max-width: 560px;
+
+            text-align: center;
+
+            position: relative;
+
+            z-index: 1;
+        }
+
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back {
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 25px;
+
+            padding: 10px 18px;
+
+            background: rgba(255, 255, 255, 0.8);
+
+            color: #222;
+
+            text-decoration: none;
+
+            border-radius: 30px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            box-shadow:
+                0 5px 15px rgba(0, 0, 0, 0.06);
+
+            transition: 0.25s ease;
+        }
+
+        .back:hover {
+            transform: translateY(-2px);
+
+            background: white;
+        }
+
+
+        /* =========================
+           PROFILE PICTURE
+        ========================= */
+
+        .profile-picture {
+            width: 105px;
+
+            height: 105px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            object-position: center;
+
+            display: block;
+
+            margin: 0 auto 16px auto;
+
+            border: 4px solid white;
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.10);
+        }
+
+
+        /* =========================
+           TITLE
+        ========================= */
+
+        h1 {
+            font-family: "Playfair Display", serif;
+
+            font-size: 38px;
+
+            font-weight: 600;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 7px;
+        }
+
+
+        /* =========================
+           INTRO
+        ========================= */
+
+        .intro {
+            color: #666;
+
+            font-size: 14px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           CATEGORY
+        ========================= */
+
+        .category {
+            margin-bottom: 25px;
+
+            text-align: left;
+        }
+
+        .category-title {
+            font-family: "Playfair Display", serif;
+
+            font-size: 23px;
+
+            margin-bottom: 12px;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           FAVORITE ITEMS
+        ========================= */
+
+        .favorite {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            background: rgba(255, 255, 255, 0.92);
+
+            color: #222;
+
+            text-decoration: none;
+
+            padding: 17px 20px;
+
+            margin-bottom: 11px;
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 7px 18px rgba(0, 0, 0, 0.06);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .favorite:hover {
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 10px 22px rgba(0, 0, 0, 0.10);
+        }
+
+
+        /* =========================
+           FAVORITE INFO
+        ========================= */
+
+        .favorite-info {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            text-align: left;
+        }
+
+
+        /* =========================
+           ICON
+        ========================= */
+
+        .favorite-icon {
+            width: 38px;
+
+            height: 38px;
+
+            min-width: 38px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #ffdce9;
+
+            border-radius: 50%;
+
+            font-size: 17px;
+        }
+
+
+        /* =========================
+           ITEM NAME
+        ========================= */
+
+        .favorite-name {
+            font-size: 14px;
+
+            font-weight: 600;
+        }
+
+
+        /* =========================
+           DESCRIPTION
+        ========================= */
+
+        .favorite-description {
+            font-size: 11px;
+
+            color: #777;
+
+            margin-top: 3px;
+        }
+
+
+        /* =========================
+           ARROW
+        ========================= */
+
+        .arrow {
+            font-size: 18px;
+
+            color: #81d8d0;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            margin-top: 35px;
+
+            font-size: 11px;
+
+            color: #777;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            body {
+                padding: 30px 18px;
+            }
+
+            .container {
+                max-width: 430px;
+            }
+
+            h1 {
+                font-size: 34px;
+            }
+
+            .profile-picture {
+                width: 95px;
+
+                height: 95px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- Decorative sparkles -->
+
+    <div class="sparkle one">✦</div>
+
+    <div class="sparkle two">✧</div>
+
+    <div class="sparkle three">✦</div>
+
+    <div class="sparkle four">✧</div>
+
+
+    <!-- Main Container -->
+
+    <div class="container">
+
+
+        <!-- Back Home -->
+
+        <a
+            href="index.html"
+            class="back"
+        >
+            ← back home
+        </a>
+
+
+        <!-- Profile Picture -->
+
+        <img
+            src="profile.jpg"
+            class="profile-picture"
+            alt="Tiffany Chase"
+        >
+
+
+        <!-- Page Title -->
+
+        <h1>my favorites</h1>
+
+
+        <!-- Introduction -->
+
+        <p class="intro">
+            a few things I'm currently obsessed with ♡
+        </p>
+
+
+
+        <!-- =========================
+             BEAUTY
+        ========================= -->
+
+        <div class="category">
+
+            <h2 class="category-title">
+                💄 beauty
+            </h2>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        💋
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Everyday Lip Combo
+                        </div>
+
+                        <div class="favorite-description">
+                            my go-to lip combo
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        ✨
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Makeup Favorites
+                        </div>
+
+                        <div class="favorite-description">
+                            products I actually use
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        🧴
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Skincare
+                        </div>
+
+                        <div class="favorite-description">
+                            my current skincare routine
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =========================
+             HAIR
+        ========================= -->
+
+        <div class="category">
+
+            <h2 class="category-title">
+                💇🏽‍♀️ hair
+            </h2>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        💗
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Hair Products
+                        </div>
+
+                        <div class="favorite-description">
+                            products I use on my hair
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        🎀
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Hair Tools
+                        </div>
+
+                        <div class="favorite-description">
+                            my favorite styling tools
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =========================
+             FASHION
+        ========================= -->
+
+        <div class="category">
+
+            <h2 class="category-title">
+                👗 fashion
+            </h2>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        👠
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Going-Out Favorites
+                        </div>
+
+                        <div class="favorite-description">
+                            pieces I love for a night out
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        👜
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Bags & Accessories
+                        </div>
+
+                        <div class="favorite-description">
+                            my favorite accessories
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =========================
+             LIFESTYLE
+        ========================= -->
+
+        <div class="category">
+
+            <h2 class="category-title">
+                🏠 lifestyle
+            </h2>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        🕯️
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Apartment Favorites
+                        </div>
+
+                        <div class="favorite-description">
+                            cute things for my space
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        ☕
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Everyday Favorites
+                        </div>
+
+                        <div class="favorite-description">
+                            things I use all the time
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =========================
+             TRAVEL
+        ========================= -->
+
+        <div class="category">
+
+            <h2 class="category-title">
+                ✈️ travel
+            </h2>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        🧳
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Travel Essentials
+                        </div>
+
+                        <div class="favorite-description">
+                            things I always pack
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        ✈️
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Travel Accessories
+                        </div>
+
+                        <div class="favorite-description">
+                            my airport & travel must-haves
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- =========================
+             CRAFTS
+        ========================= -->
+
+        <div class="category">
+
+            <h2 class="category-title">
+                🎨 crafts
+            </h2>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        ✂️
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Craft Supplies
+                        </div>
+
+                        <div class="favorite-description">
+                            supplies I love using for DIY projects
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        🧵
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            Sewing & Embroidery
+                        </div>
+
+                        <div class="favorite-description">
+                            my favorite sewing & embroidery finds
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+
+            <a
+                href="#"
+                class="favorite"
+            >
+
+                <div class="favorite-info">
+
+                    <div class="favorite-icon">
+                        🎀
+                    </div>
+
+                    <div>
+
+                        <div class="favorite-name">
+                            DIY Favorites
+                        </div>
+
+                        <div class="favorite-description">
+                            cute things for my next DIY
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="arrow">
+                    →
+                </div>
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Footer -->
+
+        <footer>
+            © 2026 tiffany chase
+        </footer>
+
+
+    </div>
+
+</body>
+
+</html>
